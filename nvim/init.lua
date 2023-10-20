@@ -29,6 +29,37 @@ require('lazy').setup({
   -- highlight the word under cursor
   'RRethy/vim-illuminate',
 
+  -- colors
+  {
+    -- Theme inspired by Atom
+    'navarasu/onedark.nvim',
+    priority = 1000,
+    opts = {
+      style = 'deep'
+    },
+    config = function(_, opts)
+      require('onedark').setup(opts)
+      vim.cmd.colorscheme 'onedark'
+    end,
+  },
+  {
+    "folke/tokyonight.nvim",
+    opts = { style = "night" },
+  },
+  {
+    "catppuccin/nvim",
+    name = "catppuccin",
+  },
+  {
+    "bluz71/vim-moonfly-colors",
+    name = "moonfly",
+    lazy = false,
+    priority = 1000
+  },
+  'rebelot/kanagawa.nvim',
+  'Mofiqul/dracula.nvim',
+  --
+
   {
     -- LSP Configuration & Plugins
     'neovim/nvim-lspconfig',
@@ -103,19 +134,6 @@ require('lazy').setup({
         end, { expr = true, buffer = bufnr, desc = 'Jump to previous hunk' })
       end,
     },
-  },
-
-  {
-    -- Theme inspired by Atom
-    'navarasu/onedark.nvim',
-    priority = 1000,
-    opts = {
-      style = 'deep'
-    },
-    config = function(_, opts)
-      require('onedark').setup(opts)
-      vim.cmd.colorscheme 'onedark'
-    end,
   },
 
   {
