@@ -735,7 +735,7 @@ vim.keymap.set('n', '<leader>rc', ':e $MYVIMRC<cr>')
 vim.keymap.set('n', '<leader>re', ':source $MYVIMRC<cr>')
 
 
-vim.o.paste = true
+-- vim.o.paste = true
 if vim.fn.has('wsl') == 1 then
   vim.keymap.set('v', '"+y', "<esc>:'<,'>:w !clip.exe<cr><cr>")
 --   vim.g.clipboard = {
