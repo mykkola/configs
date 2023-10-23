@@ -734,19 +734,22 @@ vim.keymap.set({ 'n', 'v', 'i' }, '<F6>', '<esc>:bn<cr>')
 vim.keymap.set('n', '<leader>rc', ':e $MYVIMRC<cr>')
 vim.keymap.set('n', '<leader>re', ':source $MYVIMRC<cr>')
 
+
+vim.o.paste = true
 if vim.fn.has('wsl') == 1 then
-  vim.g.clipboard = {
-    name = 'WslClipboard',
-    copy = {
-      ['+'] = 'clip.exe',
-      ['*'] = 'clip.exe',
-    },
-    paste = {
-      ['+'] = 'powershell.exe -c [Console]::Out.Write($(Get-Clipboard -Raw).tostring().replace("`r", ""))',
-      ['*'] = 'powershell.exe -c [Console]::Out.Write($(Get-Clipboard -Raw).tostring().replace("`r", ""))',
-    },
-    cache_enabled = 0,
-  }
+  vim.keymap.set('v', '"+y', "<esc>:'<,'>:w !clip.exe<cr><>cr")
+--   vim.g.clipboard = {
+--     name = 'WslClipboard',
+--     copy = {
+--       ['+'] = 'clip.exe',
+--       ['*'] = 'clip.exe',
+--     },
+--     paste = {
+--       ['+'] = 'powershell.exe -c [Console]::Out.Write($(Get-Clipboard -Raw).tostring().replace("`r", ""))',
+--       ['*'] = 'powershell.exe -c [Console]::Out.Write($(Get-Clipboard -Raw).tostring().replace("`r", ""))',
+--     },
+--     cache_enabled = 0,
+--   }
 end
 -- The line beneath this is called `modeline`. See `:help modeline`
 -- vim: ts=2 sts=2 sw=2 et
