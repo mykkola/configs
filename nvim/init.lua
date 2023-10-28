@@ -28,8 +28,10 @@ require('lazy').setup({
   'tpope/vim-surround',
   -- highlight the word under cursor
   'RRethy/vim-illuminate',
-
-   'mhinz/vim-startify',
+  -- start page with sessions support
+  'mhinz/vim-startify',
+  -- tables
+  'dhruvasagar/vim-table-mode',
 
   -- colors
   {
@@ -733,6 +735,8 @@ vim.keymap.set({ 'n', 'v', 'i' }, '<F6>', '<esc>:bn<cr>')
 
 vim.keymap.set('n', '<leader>rc', ':e $MYVIMRC<cr>')
 vim.keymap.set('n', '<leader>re', ':source $MYVIMRC<cr>')
+
+vim.keymap.set('n', '<leader>tm', ':TableModeToggle<cr>')
 
 
 -- vim.o.paste = true
