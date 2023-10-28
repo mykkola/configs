@@ -371,10 +371,6 @@ vim.o.hlsearch = false
 -- Enable mouse mode
 vim.o.mouse = 'a'
 
--- Sync clipboard between OS and Neovim.
---  Remove this option if you want your OS clipboard to remain independent.
---  See `:help 'clipboard'`
--- vim.o.clipboard = 'unnamedplus'
 
 -- Enable break indent
 vim.o.breakindent = true
@@ -736,20 +732,21 @@ vim.keymap.set('n', '<leader>re', ':source $MYVIMRC<cr>')
 
 
 -- vim.o.paste = true
+-- vim.o.clipboard = 'unnamedplus'
 if vim.fn.has('wsl') == 1 then
-  vim.keymap.set('v', '"+y', "<esc>:'<,'>:w !clip.exe<cr><cr>")
---   vim.g.clipboard = {
---     name = 'WslClipboard',
---     copy = {
---       ['+'] = 'clip.exe',
---       ['*'] = 'clip.exe',
---     },
---     paste = {
---       ['+'] = 'powershell.exe -c [Console]::Out.Write($(Get-Clipboard -Raw).tostring().replace("`r", ""))',
---       ['*'] = 'powershell.exe -c [Console]::Out.Write($(Get-Clipboard -Raw).tostring().replace("`r", ""))',
---     },
---     cache_enabled = 0,
---   }
+  -- vim.keymap.set('v', '"+y', "<esc>:'<,'>:w !clip.exe<cr><cr>")
+  vim.g.clipboard = {
+    name = 'WslClipboard',
+    copy = {
+      ['+'] = 'clip.exe',
+      ['*'] = 'clip.exe',
+    },
+    paste = {
+      ['+'] = 'powershell.exe -c [Console]::Out.Write($(Get-Clipboard -Raw).tostring().replace("`r", ""))',
+      ['*'] = 'powershell.exe -c [Console]::Out.Write($(Get-Clipboard -Raw).tostring().replace("`r", ""))',
+    },
+    cache_enabled = 0,
+  }
 end
 -- The line beneath this is called `modeline`. See `:help modeline`
 -- vim: ts=2 sts=2 sw=2 et
