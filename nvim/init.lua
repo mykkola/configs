@@ -29,6 +29,8 @@ require('lazy').setup({
   -- highlight the word under cursor
   'RRethy/vim-illuminate',
 
+   'mhinz/vim-startify',
+
   -- colors
   {
     -- Theme inspired by Atom
