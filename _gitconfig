@@ -1,0 +1,31 @@
+[color]
+	ui = auto
+[mergetool "vimdiff3"]
+	cmd = vim -f -d -c \"wincmd J\" \"$MERGED\" \"$LOCAL\" \"$BASE\" \"$REMOTE\"
+	keepbackup = false
+[merge]
+	tool = vimdiff3
+[pager]
+	color = true
+[diff]
+	color = auto
+	tool = vimdiff
+[merge "manual"]
+	name = manual
+	driver = Unset
+[mergetool]
+	keepBackup = false
+[alias]
+	lg = log --graph --pretty=format:'%C(cyan)%h%Creset %s%Cred%d%Creset (%Cgreen%cr%Creset by %aN)%Creset'
+	ll = log --pretty=format:'%C(cyan)%h%Cred%d %Creset%s%Cblue (%Cgreen%cr%Creset by %aN)%Creset' --decorate --numstat
+	lol = log --graph --decorate --pretty=oneline --abbrev-commit
+	lola = log --graph --decorate --pretty=oneline --abbrev-commit --all
+	logg = log --abbrev-commit --date=relative
+	ss = status --short --branch
+	s = status
+	b = branch
+	co = checkout
+	dw = diff --word-diff=color
+	ignored = !git ls-files -v | grep ^[a-z]
+	ignore = !git update-index --assume-unchanged
+	unignore = !git update-index --no-assume-unchanged
