@@ -690,6 +690,8 @@ cmp.setup {
 vim.o.cursorline = true
 vim.o.smartcase = true
 vim.o.smartindent = true
+vim.o.shiftwidth = 4
+vim.o.tabstop = 4
 vim.o.wrap = true
 
 vim.opt.listchars = { eol = '↵', space = '·', tab = '|·', trail = '~', extends = '>', precedes = '<' }
