@@ -32,7 +32,7 @@ require('lazy').setup({
   'mhinz/vim-startify',
   -- tables
   'dhruvasagar/vim-table-mode',
-
+  { "ellisonleao/glow.nvim", config = true, cmd = "Glow" },
   -- colors
   {
     -- Theme inspired by Atom

@@ -3,6 +3,6 @@
 
     npm install -g typescript typescript-language-server prettier neovim
 
-    brew instrall fd ripgrep
+    brew install fd ripgrep glow
 
     sudo apt-get install fd-find ripgrep
