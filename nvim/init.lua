@@ -251,6 +251,7 @@ require('lazy').setup({
     config = function(_, opts)
       require('neo-tree').setup(opts)
       vim.keymap.set('n', '<leader>e', "<Cmd>Neotree toggle<CR>")
+      vim.keymap.set('n', '<leader>b', "<Cmd>Neotree buffers<CR>")
     end,
   },
   {
