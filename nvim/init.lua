@@ -33,7 +33,7 @@ require('lazy').setup({
   'dhruvasagar/vim-table-mode',
   -- restore lsat position in file
   'farmergreg/vim-lastplace',
-
+  -- markdown preview
   { "ellisonleao/glow.nvim", config = true, cmd = "Glow" },
   -- colors
   {
@@ -43,14 +43,14 @@ require('lazy').setup({
     opts = {
       style = 'deep'
     },
-    config = function(_, opts)
-      require('onedark').setup(opts)
-      vim.cmd.colorscheme 'onedark'
-    end,
   },
   {
     "folke/tokyonight.nvim",
     opts = { style = "night" },
+    config = function(_, opts)
+      require('tokyonight').setup(opts)
+      vim.cmd.colorscheme 'tokyonight'
+    end,
   },
   {
     "catppuccin/nvim",
@@ -237,7 +237,7 @@ require('lazy').setup({
     version = "*",
     dependencies = {
       "nvim-lua/plenary.nvim",
-      "nvim-tree/nvim-web-devicons", -- not strictly required, but recommended
+      "nvim-tree/nvim-web-devicons",
       "MunifTanjim/nui.nvim",
     },
     opts = {
