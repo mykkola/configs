@@ -21,7 +21,6 @@ vim.cmd([[ let g:neo_tree_remove_legacy_commands = 1 ]])
 require('lazy').setup({
   -- Git related plugins
   'tpope/vim-fugitive',
-  'tpope/vim-rhubarb',
   -- Detect tabstop and shiftwidth automatically
   'tpope/vim-sleuth',
   --
