@@ -31,6 +31,9 @@ require('lazy').setup({
   'mhinz/vim-startify',
   -- tables
   'dhruvasagar/vim-table-mode',
+  -- restore lsat position in file
+  'farmergreg/vim-lastplace',
+
   { "ellisonleao/glow.nvim", config = true, cmd = "Glow" },
   -- colors
   {
