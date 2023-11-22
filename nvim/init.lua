@@ -178,14 +178,6 @@ require('lazy').setup({
     -- Enable `lukas-reineke/indent-blankline.nvim`
     -- See `:help ibl`
     main = 'ibl',
-    opts = {
-      --indent = { highlight = { "CursorColumn", "Whitespace" }, char = "" },
-      --whitespace = {
-      --highlight = { "CursorColumn", "Whitespace" },
-      --remove_blankline_trail = false,
-      --},
-      --scope = { enabled = true },
-    },
   },
 
   {
@@ -213,8 +205,6 @@ require('lazy').setup({
       -- requirements installed.
       {
         'nvim-telescope/telescope-fzf-native.nvim',
-        -- NOTE: If you are having trouble with this installation,
-        --       refer to the README for telescope-fzf-native for more instructions.
         build = 'make',
         cond = function()
           return vim.fn.executable 'make' == 1
@@ -263,7 +253,7 @@ require('lazy').setup({
     config = function()
       vim.o.fillchars = [[eob: ,fold: ,foldopen:,foldsep: ,foldclose:]]
       vim.o.foldcolumn = '2' -- '0' is not bad
-      vim.o.foldlevel = 99   -- Using ufo provider need a large value, feel free to decrease the value
+      vim.o.foldlevel = 99   -- need a large value
       vim.o.foldlevelstart = 99
       vim.o.foldenable = true
       require('ufo').setup({
@@ -300,7 +290,6 @@ require('lazy').setup({
     event = "InsertEnter",
     opts = {}
   },
-  --{ import = 'custom.plugins' }
 }, {})
 
 
@@ -415,7 +404,6 @@ vim.keymap.set('n', '<leader>sr', require('telescope.builtin').resume, { desc = 
 vim.defer_fn(function()
   require('nvim-treesitter.configs').setup {
     modules = {},
-    -- Add languages to be installed here that you want installed for treesitter
     ensure_installed = {
       "bash",
       "c",
@@ -447,10 +435,7 @@ vim.defer_fn(function()
     },
     sync_install = false,
     ignore_install = {},
-
-    -- Autoinstall languages that are not installed. Defaults to false (but you can change for yourself!)
     auto_install = false,
-
     highlight = { enable = true },
     indent = { enable = true },
     incremental_selection = {
@@ -550,13 +535,6 @@ require('mason').setup()
 require('mason-lspconfig').setup()
 
 -- Enable the following language servers
---  Feel free to add/remove any LSPs that you want here. They will automatically be installed.
---
---  Add any additional override configuration in the following tables. They will be passed to
---  the `settings` field of the server config. You must look up that documentation yourself.
---
---  If you want to override the default filetypes that your language server will attach to you can
---  define the property 'filetypes' to the map in question.
 local servers = {
   -- clangd = {},
   gopls = {},
@@ -718,5 +696,4 @@ vim.cmd('autocmd FileType tex map <F9> :w<CR>:!xelatex %<cr>')
 vim.cmd('autocmd FileType tex vmap <F9> <esc>:w<CR>:!xelatex %<cr>')
 vim.cmd('autocmd FileType tex imap <F9> <esc>:w<CR>:!xelatex %<cr>')
 
--- The line beneath this is called `modeline`. See `:help modeline`
 -- vim: ts=2 sts=2 sw=2 et
