@@ -19,11 +19,11 @@ vim.opt.rtp:prepend(lazypath)
 
 vim.cmd([[ let g:neo_tree_remove_legacy_commands = 1 ]])
 require('lazy').setup({
-  -- Git related plugins
+  -- for git
   'tpope/vim-fugitive',
   -- Detect tabstop and shiftwidth automatically
   'tpope/vim-sleuth',
-  --
+  -- for wrapping
   'tpope/vim-surround',
   -- highlight the word under cursor
   'RRethy/vim-illuminate',
@@ -31,7 +31,7 @@ require('lazy').setup({
   'mhinz/vim-startify',
   -- tables
   'dhruvasagar/vim-table-mode',
-  -- restore lsat position in file
+  -- restore last position in file
   'farmergreg/vim-lastplace',
   -- markdown preview
   { "ellisonleao/glow.nvim", config = true, cmd = "Glow" },
@@ -645,7 +645,7 @@ cmp.setup {
   },
 }
 
-vim.o.cursorline = true
+vim.o.cursorline = false
 vim.o.smartcase = true
 vim.o.smartindent = true
 vim.o.shiftwidth = 4
