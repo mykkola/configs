@@ -432,6 +432,7 @@ vim.defer_fn(function()
       "terraform",
       "go",
       "gomod",
+      "graphql",
     },
     sync_install = false,
     ignore_install = {},
