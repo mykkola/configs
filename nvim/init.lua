@@ -707,4 +707,10 @@ vim.cmd('autocmd FileType tex vmap <F9> <esc>:w<CR>:!xelatex -output-directory=%
 vim.cmd('autocmd FileType tex imap <F9> <esc>:w<CR>:!xelatex -output-directory=%:p:h %<cr>')
 
 
+
+if vim.g.neovide then
+  vim.o.guifont = "VictorMono Nerd Font:h12"
+  -- vim.o.guifont = "BlexMono Nerd Font:h12"
+end
+
 -- vim: ts=2 sts=2 sw=2 et
