@@ -702,8 +702,9 @@ if vim.fn.has('wsl') == 1 then
   }
 end
 
-vim.cmd('autocmd FileType tex map <F9> :w<CR>:!xelatex %<cr>')
-vim.cmd('autocmd FileType tex vmap <F9> <esc>:w<CR>:!xelatex %<cr>')
-vim.cmd('autocmd FileType tex imap <F9> <esc>:w<CR>:!xelatex %<cr>')
+vim.cmd('autocmd FileType tex map <F9> :w<CR>:!xelatex -output-directory=%:p:h %<cr>')
+vim.cmd('autocmd FileType tex vmap <F9> <esc>:w<CR>:!xelatex -output-directory=%:p:h %<cr>')
+vim.cmd('autocmd FileType tex imap <F9> <esc>:w<CR>:!xelatex -output-directory=%:p:h %<cr>')
+
 
 -- vim: ts=2 sts=2 sw=2 et
