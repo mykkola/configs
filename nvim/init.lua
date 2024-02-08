@@ -31,6 +31,7 @@ require('lazy').setup({
   'mhinz/vim-startify',
   -- tables
   'dhruvasagar/vim-table-mode',
+  'junegunn/vim-easy-align',
   -- restore last position in file
   'farmergreg/vim-lastplace',
   -- markdown preview
@@ -682,6 +683,9 @@ vim.keymap.set('n', '<leader>rc', ':e $MYVIMRC<cr>')
 vim.keymap.set('n', '<leader>re', ':source $MYVIMRC<cr>')
 
 vim.keymap.set('n', '<leader>tm', ':TableModeToggle<cr>')
+
+vim.keymap.set('x', 'ga', ':EasyAlign')
+vim.keymap.set('n', 'ga', ':EasyAlign')
 
 
 -- vim.o.paste = true
