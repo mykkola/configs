@@ -711,6 +711,10 @@ vim.cmd('autocmd FileType tex map <F9> :w<CR>:!xelatex -output-directory=%:p:h %
 vim.cmd('autocmd FileType tex vmap <F9> <esc>:w<CR>:!xelatex -output-directory=%:p:h %<cr>')
 vim.cmd('autocmd FileType tex imap <F9> <esc>:w<CR>:!xelatex -output-directory=%:p:h %<cr>')
 
+vim.cmd('autocmd FileType plantuml map <F9> :w<CR>:!plantuml -tpng -output %:p:h %<cr>')
+vim.cmd('autocmd FileType plantuml vmap <F9> <esc>:w<CR>:!plantuml -tpng -output %:p:h %<cr>')
+vim.cmd('autocmd FileType plantuml imap <F9> <esc>:w<CR>:!plantuml -tpng -output %:p:h %<cr>')
+
 
 
 if vim.g.neovide then
