@@ -36,6 +36,7 @@ require('lazy').setup({
   'farmergreg/vim-lastplace',
   -- markdown preview
   { "ellisonleao/glow.nvim", config = true, cmd = "Glow" },
+  'aklt/plantuml-syntax',
   -- colors
   {
     -- Theme inspired by Atom
