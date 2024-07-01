@@ -668,7 +668,7 @@ vim.keymap.set('i', '<F2>', '<c-o>:w<cr>')
 vim.keymap.set({ 'n', 'i', 'v' }, '<F3>', '<esc>:set wrap!<cr>')
 -- tabs
 vim.keymap.set({ 'n' }, '<leader>-', '<esc>:buffers<cr>', { desc = 'Show/list buffers' })
-vim.keymap.set({ 'n' }, '<leader>=', '<esc>:tabnew<cr>', { desc = 'New tab' })
+vim.keymap.set({ 'n' }, '<leader>=', '<esc>:tabedit %:p:h<CR>', { desc = 'New tab' })
 vim.keymap.set({ 'n' }, '<leader>_', '<esc>:bd!<cr>', { desc = 'Close tab' })
 vim.keymap.set({ 'n' }, '<leader>[', '<esc>:tabprev<cr>', { desc = 'Prev tab' })
 vim.keymap.set({ 'n' }, '<leader>]', '<esc>:tabnext<cr>', { desc = 'Next tab' })
