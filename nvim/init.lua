@@ -689,6 +689,12 @@ vim.keymap.set('x', 'ga', ':EasyAlign')
 vim.keymap.set('n', 'ga', ':EasyAlign')
 
 
+vim.keymap.set('n', '<S-Up>', '<Cmd>resize +1<CR>') -- increase window size vertically
+vim.keymap.set('n', '<S-Down>', '<Cmd>resize -1<CR>') -- decrease window size vertically
+vim.keymap.set('n', '<S-Right>', '<Cmd>vertical resize +1<CR>') -- increase window size horizontally
+vim.keymap.set('n', '<S-Left>', '<Cmd>vertical resize -1<CR>') -- decrease window size horizontally
+
+
 -- vim.o.paste = true
 -- vim.o.clipboard = 'unnamedplus'
 if vim.fn.has('wsl') == 1 then
