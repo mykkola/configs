@@ -104,7 +104,7 @@ require('lazy').setup({
   },
 
   -- Useful plugin to show you pending keybinds.
-  { 'folke/which-key.nvim', opts = {} },
+  { 'folke/which-key.nvim',  opts = {} },
   {
     -- Adds git related signs to the gutter, as well as utilities for managing changes
     'lewis6991/gitsigns.nvim',
@@ -531,15 +531,15 @@ local on_attach = function(_, bufnr)
 end
 
 -- document existing key chains
-require('which-key').register {
-  ['<leader>c'] = { name = '[C]ode', _ = 'which_key_ignore' },
-  --['<leader>d'] = { name = '[D]ocument', _ = 'which_key_ignore' },
-  ['<leader>g'] = { name = '[G]it', _ = 'which_key_ignore' },
-  ['<leader>h'] = { name = 'More git', _ = 'which_key_ignore' },
-  ['<leader>r'] = { name = '[R]ename', _ = 'which_key_ignore' },
-  ['<leader>s'] = { name = '[S]earch', _ = 'which_key_ignore' },
-  ['<leader>w'] = { name = '[W]orkspace', _ = 'which_key_ignore' },
-}
+-- require('which-key').register {
+--   { '<leader>c', group = '[C]ode' },
+--   --['<leader>d'] = { name = '[D]ocument', _ = 'which_key_ignore' },
+--   { '<leader>g', group = '[G]it' },
+--   { '<leader>h', group = 'More git' },
+--   { '<leader>r', group = '[R]ename' },
+--   { '<leader>s', group = '[S]earch' },
+--   { '<leader>w', group = '[W]orkspace' },
+-- }
 
 -- mason-lspconfig requires that these setup functions are called in this order
 -- before setting up the servers.
@@ -552,7 +552,7 @@ local servers = {
   gopls = {},
   -- pyright = {},
   -- rust_analyzer = {},
-  tsserver = {},
+  ts_ls = {},
   -- html = { filetypes = { 'html', 'twig', 'hbs'} },
 
   lua_ls = {
@@ -689,10 +689,10 @@ vim.keymap.set('x', 'ga', ':EasyAlign')
 vim.keymap.set('n', 'ga', ':EasyAlign')
 
 
-vim.keymap.set('n', '<S-Up>', '<Cmd>resize +1<CR>') -- increase window size vertically
-vim.keymap.set('n', '<S-Down>', '<Cmd>resize -1<CR>') -- decrease window size vertically
+vim.keymap.set('n', '<S-Up>', '<Cmd>resize +1<CR>')             -- increase window size vertically
+vim.keymap.set('n', '<S-Down>', '<Cmd>resize -1<CR>')           -- decrease window size vertically
 vim.keymap.set('n', '<S-Right>', '<Cmd>vertical resize +1<CR>') -- increase window size horizontally
-vim.keymap.set('n', '<S-Left>', '<Cmd>vertical resize -1<CR>') -- decrease window size horizontally
+vim.keymap.set('n', '<S-Left>', '<Cmd>vertical resize -1<CR>')  -- decrease window size horizontally
 
 
 -- vim.o.paste = true
