@@ -18,6 +18,7 @@ vim.opt.rtp:prepend(lazypath)
 
 
 vim.cmd([[ let g:neo_tree_remove_legacy_commands = 1 ]])
+
 require('lazy').setup({
   -- for git
   'tpope/vim-fugitive',
@@ -239,6 +240,15 @@ require('lazy').setup({
       buffers = {
         follow_current_file = { enabled = true }
       },
+      window = {
+        mappings = {
+          ["/"] = "noop",
+          ["f"] = "fuzzy_finder",
+          ["F"] = "filter_on_submit",
+          ["E"] = "expand_all_nodes",
+        }
+      },
+      close_if_last_window = true
     },
     config = function(_, opts)
       require('neo-tree').setup(opts)
