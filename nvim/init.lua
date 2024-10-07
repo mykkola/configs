@@ -729,5 +729,6 @@ if vim.g.neovide then
 end
 
 vim.opt.spelllang = 'en_us'
+vim.keymap.set({ 'n', 'v', 'i' }, '<F7>', '<esc>:set invspell<cr>')
 
 -- vim: ts=2 sts=2 sw=2 et
