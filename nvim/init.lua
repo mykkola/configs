@@ -728,4 +728,6 @@ if vim.g.neovide then
   -- vim.o.guifont = "BlexMono Nerd Font:h12"
 end
 
+vim.opt.spelllang = 'en_us'
+
 -- vim: ts=2 sts=2 sw=2 et
