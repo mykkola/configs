@@ -274,6 +274,7 @@ require('lazy').setup({
         end,
         open_fold_hl_timeout = 400,
         close_fold_kinds = {},
+        close_fold_kinds_for_ft = {},
         enable_get_fold_virt_text = false,
         preview = {
           win_config = {
