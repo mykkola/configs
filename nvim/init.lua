@@ -308,7 +308,9 @@ require('lazy').setup({
     "robitx/gp.nvim",
     config = function()
       require("gp").setup({
-        openai_api_key = { "pass", "show", "openai-first" },
+        -- openai_api_key = { "pass", "show", "openai-first" },
+        -- security add-generic-password -a mykola -s openai-first -w $(pass show openai-first)
+        openai_api_key = { "security", "find-generic-password", "-s", "openai-first", "-w" },
       })
     end,
   }
