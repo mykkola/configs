@@ -295,7 +295,7 @@ require('lazy').setup({
       formatters_by_ft = {
         javascript = { 'prettier', stop_after_first = true },
         typescript = { 'prettier', stop_after_first = true },
-        python = { 'black', stop_after_first = true },
+        python = { "ruff_fix", "ruff_format", "ruff_organize_imports", stop_after_first = false },
       },
     },
   },
@@ -311,6 +311,43 @@ require('lazy').setup({
         -- openai_api_key = { "pass", "show", "openai-first" },
         -- security add-generic-password -a mykola -s openai-first -w $(pass show openai-first)
         openai_api_key = { "security", "find-generic-password", "-s", "openai-first", "-w" },
+        chat_template = require("gp.defaults").short_chat_template,
+        agents = {
+          {
+            name = "ChatGPT4o-my",
+            chat = true,
+            command = false,
+            model = { model = "gpt-4o", temperature = 1.1, top_p = 1 },
+            system_prompt = "You are a general AI assistant.\n\n"
+                .. "The user provided the additional info about how they would like you to respond:\n\n"
+                .. "- If you're unsure don't guess and say you don't know instead.\n"
+                .. "- Use Socratic method to improve your thinking and coding skills.\n"
+                .. "- Don't elide any code from your output if the answer requires coding.\n",
+          },
+          -- {
+          --   name = "o1-preview",
+          --   chat = true,
+          --   command = false,
+          --   model = { model = "o1-preview", temperature = 1.1, top_p = 1 },
+          --   -- system_prompt = require("gp.defaults").chat_system_prompt,
+          --   system_prompt = "You are a general AI assistant.\n\n"
+          --       .. "The user provided the additional info about how they would like you to respond:\n\n"
+          --       .. "- If you're unsure don't guess and say you don't know instead.\n"
+          --       .. "- Use Socratic method to improve your thinking and coding skills.\n"
+          --       .. "- Don't elide any code from your output if the answer requires coding.\n",
+          -- },
+          -- {
+          --   name = "o1-preview4commands",
+          --   chat = false,
+          --   command = true,
+          --   -- string with model name or table with model name and parameters
+          --   model = { model = "o1-preview", temperature = 1.1, top_p = 1 },
+          --   -- system prompt (use this to specify the persona/role of the AI)
+          --   system_prompt = "You are an AI working as a code editor.\n\n"
+          --       .. "Please AVOID COMMENTARY OUTSIDE OF THE SNIPPET RESPONSE.\n"
+          --       .. "START AND END YOUR ANSWER WITH:\n\n```",
+          -- },
+        }
       })
     end,
   }
@@ -572,7 +609,7 @@ require('mason-lspconfig').setup()
 local servers = {
   -- clangd = {},
   -- gopls = {},
-  -- pyright = {},
+  pyright = {},
   -- rust_analyzer = {},
   ts_ls = {},
   -- html = { filetypes = { 'html', 'twig', 'hbs'} },
