@@ -295,6 +295,8 @@ require('lazy').setup({
       formatters_by_ft = {
         javascript = { 'prettier', stop_after_first = true },
         typescript = { 'prettier', stop_after_first = true },
+        json = { 'prettier', stop_after_first = true },
+        graphql = { 'prettier', stop_after_first = true },
         python = { "ruff_fix", "ruff_format", "ruff_organize_imports", stop_after_first = false },
       },
     },
