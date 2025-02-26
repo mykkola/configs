@@ -7,9 +7,14 @@
 	tool = vimdiff3
 [pager]
 	color = true
+[difftool "difftastic"]
+    # See `man git-difftool` for a description of MERGED, LOCAL and REMOTE.
+    cmd = difft "$MERGED" "$LOCAL" "abcdef1" "100644" "$REMOTE" "abcdef2" "100644"
 [diff]
 	color = auto
 	tool = vimdiff
+	#git difftool -t difftastic
+	#tool = difftastic
 [merge "manual"]
 	name = manual
 	driver = Unset
@@ -29,3 +34,6 @@
 	ignored = !git ls-files -v | grep ^[a-z]
 	ignore = !git update-index --assume-unchanged
 	unignore = !git update-index --no-assume-unchanged
+	dl = -c diff.external=difft log -p --ext-diff
+	ds = -c diff.external=difft show --ext-diff
+	dft = -c diff.external=difft diff
