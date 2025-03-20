@@ -299,6 +299,8 @@ require('lazy').setup({
         graphql = { 'prettier', stop_after_first = true },
         python = { "ruff_fix", "ruff_format", "ruff_organize_imports", stop_after_first = false },
         sql = { 'pg_format', stop_after_first = true },
+        terraform = { 'terraform_fmt' },
+        go = { "goimports", "gofmt" },
       },
     },
   },
