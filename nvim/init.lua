@@ -304,11 +304,11 @@ require('lazy').setup({
       },
     },
   },
-  -- {
-  --   'windwp/nvim-autopairs',
-  --   event = "InsertEnter",
-  --   opts = {}
-  -- },
+  {
+    'windwp/nvim-autopairs',
+    event = "InsertEnter",
+    opts = {}
+  },
   {
     "robitx/gp.nvim",
     config = function()
@@ -359,8 +359,6 @@ require('lazy').setup({
   { 'echasnovski/mini.nvim', version = false },
 }, {})
 
-require('mini.ai').setup()
-require('mini.pairs').setup()
 require('mini.trailspace').setup()
 
 vim.o.formatexpr = "v:lua.require'conform'.formatexpr()"
