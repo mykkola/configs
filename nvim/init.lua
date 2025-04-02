@@ -301,6 +301,7 @@ require('lazy').setup({
         sql = { 'pg_format', stop_after_first = true },
         terraform = { 'terraform_fmt' },
         go = { "goimports", "gofmt" },
+        xml = { "xmlstarlet" },
       },
     },
   },
