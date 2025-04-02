@@ -788,6 +788,15 @@ vim.cmd('autocmd FileType plantuml map <F9> :w<CR>:!plantuml -tpng -output %:p:h
 vim.cmd('autocmd FileType plantuml vmap <F9> <esc>:w<CR>:!plantuml -tpng -output %:p:h %<cr>')
 vim.cmd('autocmd FileType plantuml imap <F9> <esc>:w<CR>:!plantuml -tpng -output %:p:h %<cr>')
 
+vim.api.nvim_create_augroup('terraform_ft', {})
+
+vim.api.nvim_create_autocmd({ 'BufRead', 'BufNewFile' }, {
+  group = 'terraform_ft',
+  pattern = { '*.tf', '*.tfvars' },
+  callback = function()
+    vim.bo.filetype = 'terraform'
+  end,
+})
 
 
 if vim.g.neovide then
