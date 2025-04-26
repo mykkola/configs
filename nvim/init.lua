@@ -313,6 +313,13 @@ require('lazy').setup({
   {
     "robitx/gp.nvim",
     config = function()
+      -- local system_prompt = require("gp.defaults").chat_system_prompt,
+      local prompt = "You are a senior software engineer first, and general AI assistant second.\n\n"
+          .. "The user provided the additional info about how they would like you to respond:\n\n"
+          .. "- If you're unsure don't guess and say you don't know instead.\n"
+          .. "- Use Socratic method to improve your thinking and coding skills.\n"
+          .. "- User is a senior software engineer as well so omit excessive explanations and comments.\n"
+          .. "- Ask questions, if there really are any, that can improve the response.\n"
       require("gp").setup({
         -- openai_api_key = { "pass", "show", "openai-first" },
         -- security add-generic-password -a mykola -s openai-first -w $(pass show openai-first)
@@ -324,35 +331,32 @@ require('lazy').setup({
             chat = true,
             command = false,
             model = { model = "gpt-4o", temperature = 1.1, top_p = 1 },
-            system_prompt = "You are a general AI assistant.\n\n"
-                .. "The user provided the additional info about how they would like you to respond:\n\n"
-                .. "- If you're unsure don't guess and say you don't know instead.\n"
-                .. "- Use Socratic method to improve your thinking and coding skills.\n"
-                .. "- Don't elide any code from your output if the answer requires coding.\n",
+            system_prompt = prompt
           },
-          -- {
-          --   name = "o1-preview",
-          --   chat = true,
-          --   command = false,
-          --   model = { model = "o1-preview", temperature = 1.1, top_p = 1 },
-          --   -- system_prompt = require("gp.defaults").chat_system_prompt,
-          --   system_prompt = "You are a general AI assistant.\n\n"
-          --       .. "The user provided the additional info about how they would like you to respond:\n\n"
-          --       .. "- If you're unsure don't guess and say you don't know instead.\n"
-          --       .. "- Use Socratic method to improve your thinking and coding skills.\n"
-          --       .. "- Don't elide any code from your output if the answer requires coding.\n",
-          -- },
-          -- {
-          --   name = "o1-preview4commands",
-          --   chat = false,
-          --   command = true,
-          --   -- string with model name or table with model name and parameters
-          --   model = { model = "o1-preview", temperature = 1.1, top_p = 1 },
-          --   -- system prompt (use this to specify the persona/role of the AI)
-          --   system_prompt = "You are an AI working as a code editor.\n\n"
-          --       .. "Please AVOID COMMENTARY OUTSIDE OF THE SNIPPET RESPONSE.\n"
-          --       .. "START AND END YOUR ANSWER WITH:\n\n```",
-          -- },
+          {
+            provider = "openai",
+            name = "ChatGPT4-1",
+            chat = true,
+            command = false,
+            model = { model = "gpt-4.1", temperature = 1.1, top_p = 1 },
+            system_prompt = prompt
+          },
+          {
+            provider = "openai",
+            name = "ChatGPT4-1-mini",
+            chat = true,
+            command = false,
+            model = { model = "gpt-4.1-mini", temperature = 1.1, top_p = 1 },
+            system_prompt = prompt
+          },
+          {
+            provider = "openai",
+            name = "ChatGPT4-1-nano",
+            chat = true,
+            command = false,
+            model = { model = "gpt-4.1-nano", temperature = 1.1, top_p = 1 },
+            system_prompt = prompt
+          },
         }
       })
     end,
@@ -367,16 +371,6 @@ vim.keymap.set({ 'n', 'v' }, '<leader>f', function()
   require('conform').format({ async = true, lsp_fallback = true })
 end, { desc = 'Format w/ formatter' })
 
---vim.keymap.set('v', '=', function()
---require('conform').format({ async = true, lsp_fallback = true })
---end, { desc = 'Format w/ formatter' })
-
---vim.keymap.set('n', '==', function()
---require('conform').format({ async = true, lsp_fallback = true })
---end, { desc = 'Format w/ formatter' })
-
-
-
 
 -- [[ Setting options ]]
 -- See `:help vim.o`
@@ -386,7 +380,6 @@ vim.o.hlsearch = false
 
 -- Enable mouse mode
 vim.o.mouse = 'a'
-
 
 -- Enable break indent
 vim.o.breakindent = true
