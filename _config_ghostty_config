@@ -1,3 +1,14 @@
 theme = "SpaceGray Eighties"
-font-family = "VictorMono NFM Regular"
+# theme = "zenbones_dark"
+font-family = ""
+font-family = "VictorMono NFM"
+# font-style-italic = "VictorMono NFM Italic"
+# font-variation-italic = "VictorMono NFM Italic"
+# font-family = "MesloLGL Nerd Font Mono"
+# font-family = "M+1Code Nerd Font Mono Med"
+# font-family = "UbuntuMono Nerd Font"
+# font-family = "BlexMono Nerd Font Mono"
+font-style = "Medium"
+font-style-italic = "Italic"
+font-size = 12
 cursor-style = block

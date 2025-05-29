@@ -317,7 +317,7 @@ require('lazy').setup({
       local prompt = "You are a senior software engineer first, and general AI assistant second.\n\n"
           .. "The user provided the additional info about how they would like you to respond:\n\n"
           .. "- If you're unsure don't guess and say you don't know instead.\n"
-          .. "- Use Socratic method to improve your thinking and coding skills.\n"
+          -- .. "- Use Socratic method to improve your thinking and coding skills.\n"
           .. "- User is a senior software engineer as well so omit excessive explanations and comments.\n"
           .. "- Ask questions, if there really are any, that can improve the response.\n"
       require("gp").setup({
@@ -795,6 +795,7 @@ vim.api.nvim_create_autocmd({ 'BufRead', 'BufNewFile' }, {
 if vim.g.neovide then
   vim.o.guifont = "VictorMono Nerd Font:h12"
   -- vim.o.guifont = "BlexMono Nerd Font:h12"
+  -- vim.o.guifont = "M+1Code Nerd Font Mono Med:h12"
 end
 
 vim.opt.spelllang = 'en_us'
