@@ -313,13 +313,12 @@ require('lazy').setup({
   {
     "robitx/gp.nvim",
     config = function()
-      -- local system_prompt = require("gp.defaults").chat_system_prompt,
       local prompt = "You are a senior software engineer first, and general AI assistant second.\n\n"
           .. "The user provided the additional info about how they would like you to respond:\n\n"
           .. "- If you're unsure don't guess and say you don't know instead.\n"
-          -- .. "- Use Socratic method to improve your thinking and coding skills.\n"
           .. "- User is a senior software engineer as well so omit excessive explanations and comments.\n"
           .. "- Ask questions, if there really are any, that can improve the response.\n"
+      local code_prompt = require("gp.defaults").code_system_prompt
       require("gp").setup({
         -- openai_api_key = { "pass", "show", "openai-first" },
         -- security add-generic-password -a mykola -s openai-first -w $(pass show openai-first)
@@ -327,7 +326,7 @@ require('lazy').setup({
         chat_template = require("gp.defaults").short_chat_template,
         agents = {
           {
-            name = "ChatGPT4o-my",
+            name = "ChatGPT4o",
             chat = true,
             command = false,
             model = { model = "gpt-4o", temperature = 1.1, top_p = 1 },
@@ -356,6 +355,22 @@ require('lazy').setup({
             command = false,
             model = { model = "gpt-4.1-nano", temperature = 1.1, top_p = 1 },
             system_prompt = prompt
+          },
+          {
+            provider = "openai",
+            name = "ChatGPT-o3-mini",
+            chat = true,
+            command = false,
+            model = { model = "o3-mini", temperature = 1.1, top_p = 1 },
+            system_prompt = prompt
+          },
+          {
+            provider = "openai",
+            name = "Code/GPT4-1",
+            chat = false,
+            command = true,
+            model = { model = "gpt-4.1", temperature = 0.8, top_p = 1 },
+            system_prompt = code_prompt
           },
         }
       })
