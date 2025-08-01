@@ -311,6 +311,10 @@ require('lazy').setup({
     opts = {}
   },
   {
+    "kaarmu/typst.vim",
+    ft = "typst"
+  },
+  {
     "robitx/gp.nvim",
     config = function()
       local prompt = "You are a senior software engineer first, and general AI assistant second.\n\n"
@@ -324,6 +328,12 @@ require('lazy').setup({
         -- security add-generic-password -a mykola -s openai-first -w $(pass show openai-first)
         openai_api_key = { "security", "find-generic-password", "-s", "openai-first", "-w" },
         chat_template = require("gp.defaults").short_chat_template,
+        providers = {
+          openai = {
+            disable = false,
+            endpoint = "https://severe-rosalind-mykkola-e76bdc07.koyeb.app/v1/chat/completions",
+          },
+        },
         agents = {
           {
             name = "ChatGPT4o",
@@ -636,6 +646,7 @@ local servers = {
       telemetry = { enable = false },
     },
   },
+  tinymist = {},
 }
 
 -- Setup neovim lua configuration
