@@ -74,8 +74,8 @@ require('lazy').setup({
     'neovim/nvim-lspconfig',
     dependencies = {
       -- Automatically install LSPs to stdpath for neovim
-      'williamboman/mason.nvim',
-      'williamboman/mason-lspconfig.nvim',
+      'mason-org/mason.nvim',
+      'mason-org/mason-lspconfig.nvim',
 
       -- Useful status updates for LSP
       -- NOTE: `opts = {}` is the same as calling `require('fidget').setup({})`
@@ -328,13 +328,27 @@ require('lazy').setup({
         -- security add-generic-password -a mykola -s openai-first -w $(pass show openai-first)
         openai_api_key = { "security", "find-generic-password", "-s", "openai-first", "-w" },
         chat_template = require("gp.defaults").short_chat_template,
-        providers = {
-          openai = {
-            disable = false,
-            endpoint = "https://severe-rosalind-mykkola-e76bdc07.koyeb.app/v1/chat/completions",
-          },
-        },
+        -- providers = {
+        --   openai = {
+        --     disable = false,
+        --     endpoint = "https://severe-rosalind-mykkola-e76bdc07.koyeb.app/v1/chat/completions",
+        --   },
+        -- },
         agents = {
+          -- {
+          --   provider = "openai",
+          --   name = "ChatGPT5-mini",
+          --   chat = true,
+          --   command = false,
+          --   model = {
+          --     model = "gpt-5-mini",
+          --     temperature = 1.1,
+          --     top_p = 1,
+          --     reasoning = { effort = "minimal" },
+          --     stream = false,
+          --   },
+          --   system_prompt = prompt
+          -- },
           {
             name = "ChatGPT4o",
             chat = true,
@@ -350,30 +364,30 @@ require('lazy').setup({
             model = { model = "gpt-4.1", temperature = 1.1, top_p = 1 },
             system_prompt = prompt
           },
-          {
-            provider = "openai",
-            name = "ChatGPT4-1-mini",
-            chat = true,
-            command = false,
-            model = { model = "gpt-4.1-mini", temperature = 1.1, top_p = 1 },
-            system_prompt = prompt
-          },
-          {
-            provider = "openai",
-            name = "ChatGPT4-1-nano",
-            chat = true,
-            command = false,
-            model = { model = "gpt-4.1-nano", temperature = 1.1, top_p = 1 },
-            system_prompt = prompt
-          },
-          {
-            provider = "openai",
-            name = "ChatGPT-o3-mini",
-            chat = true,
-            command = false,
-            model = { model = "o3-mini", temperature = 1.1, top_p = 1 },
-            system_prompt = prompt
-          },
+          -- {
+          --   provider = "openai",
+          --   name = "ChatGPT4-1-mini",
+          --   chat = true,
+          --   command = false,
+          --   model = { model = "gpt-4.1-mini", temperature = 1.1, top_p = 1 },
+          --   system_prompt = prompt
+          -- },
+          -- {
+          --   provider = "openai",
+          --   name = "ChatGPT4-1-nano",
+          --   chat = true,
+          --   command = false,
+          --   model = { model = "gpt-4.1-nano", temperature = 1.1, top_p = 1 },
+          --   system_prompt = prompt
+          -- },
+          -- {
+          --   provider = "openai",
+          --   name = "ChatGPT-o3-mini",
+          --   chat = true,
+          --   command = false,
+          --   model = { model = "o3-mini", temperature = 1.1, top_p = 1 },
+          --   system_prompt = prompt
+          -- },
           {
             provider = "openai",
             name = "Code/GPT4-1",
@@ -523,7 +537,7 @@ vim.defer_fn(function()
       "vim",
       "vimdoc",
       "yaml",
-      "latex",
+      -- "latex",
       "sql",
       "terraform",
       "go",
@@ -626,53 +640,48 @@ end
 --   { '<leader>w', group = '[W]orkspace' },
 -- }
 
--- mason-lspconfig requires that these setup functions are called in this order
--- before setting up the servers.
 require('mason').setup()
-require('mason-lspconfig').setup()
+require('mason-lspconfig').setup({
+  ensure_installed = {
+    "lua_ls",
+    "gopls",
+    "ts_ls",
+    -- "pyright",
+  }
+})
 
--- Enable the following language servers
-local servers = {
-  -- clangd = {},
-  gopls = {},
-  pyright = {},
-  -- rust_analyzer = {},
-  ts_ls = {},
-  -- html = { filetypes = { 'html', 'twig', 'hbs'} },
+local capabilities = vim.lsp.protocol.make_client_capabilities()
+capabilities = require('cmp_nvim_lsp').default_capabilities(capabilities)
 
-  lua_ls = {
+vim.lsp.config('lua_ls', {
+  on_attach = on_attach,
+  capabilities = capabilities,
+  settings = {
     Lua = {
-      workspace = { checkThirdParty = false },
-      telemetry = { enable = false },
+      runtime = {
+        version = 'LuaJIT',
+      },
+      diagnostics = {
+        globals = {
+          'vim',
+          'require',
+        },
+      },
     },
   },
-  tinymist = {},
-}
+})
+vim.lsp.config('gopls', {
+  on_attach = on_attach,
+  capabilities = capabilities,
+})
+vim.lsp.config('ts_ls', {
+  on_attach = on_attach,
+  capabilities = capabilities,
+})
 
 -- Setup neovim lua configuration
 require('neodev').setup()
 
--- nvim-cmp supports additional completion capabilities, so broadcast that to servers
-local capabilities = vim.lsp.protocol.make_client_capabilities()
-capabilities = require('cmp_nvim_lsp').default_capabilities(capabilities)
-
--- Ensure the servers above are installed
-local mason_lspconfig = require 'mason-lspconfig'
-
-mason_lspconfig.setup {
-  ensure_installed = vim.tbl_keys(servers),
-}
-
-mason_lspconfig.setup_handlers {
-  function(server_name)
-    require('lspconfig')[server_name].setup {
-      capabilities = capabilities,
-      on_attach = on_attach,
-      settings = servers[server_name],
-      filetypes = (servers[server_name] or {}).filetypes,
-    }
-  end,
-}
 
 -- [[ Configure nvim-cmp ]]
 -- See `:help cmp`
@@ -799,9 +808,9 @@ if vim.fn.has('wsl') == 1 then
   }
 end
 
-vim.cmd('autocmd FileType tex map <F9> :w<CR>:!xelatex -output-directory=%:p:h %<cr>')
-vim.cmd('autocmd FileType tex vmap <F9> <esc>:w<CR>:!xelatex -output-directory=%:p:h %<cr>')
-vim.cmd('autocmd FileType tex imap <F9> <esc>:w<CR>:!xelatex -output-directory=%:p:h %<cr>')
+-- vim.cmd('autocmd FileType tex map <F9> :w<CR>:!xelatex -output-directory=%:p:h %<cr>')
+-- vim.cmd('autocmd FileType tex vmap <F9> <esc>:w<CR>:!xelatex -output-directory=%:p:h %<cr>')
+-- vim.cmd('autocmd FileType tex imap <F9> <esc>:w<CR>:!xelatex -output-directory=%:p:h %<cr>')
 
 vim.cmd('autocmd FileType plantuml map <F9> :w<CR>:!plantuml -tpng -output %:p:h %<cr>')
 vim.cmd('autocmd FileType plantuml vmap <F9> <esc>:w<CR>:!plantuml -tpng -output %:p:h %<cr>')
