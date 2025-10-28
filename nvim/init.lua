@@ -836,6 +836,8 @@ end
 vim.opt.spelllang = 'en_us'
 vim.keymap.set({ 'n', 'v', 'i' }, '<F7>', '<esc>:set invspell<cr>')
 
+vim.g.easy_align_ignore_groups = {}
+
 require("which-key").add({
   {
     mode = { "v" },
