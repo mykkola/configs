@@ -335,62 +335,41 @@ require('lazy').setup({
         --   },
         -- },
         agents = {
-          -- {
-          --   provider = "openai",
-          --   name = "ChatGPT5-mini",
-          --   chat = true,
-          --   command = false,
-          --   model = {
-          --     model = "gpt-5-mini",
-          --     temperature = 1.1,
-          --     top_p = 1,
-          --     reasoning = { effort = "minimal" },
-          --     stream = false,
-          --   },
-          --   system_prompt = prompt
-          -- },
-          {
-            name = "ChatGPT4o",
-            chat = true,
-            command = false,
-            model = { model = "gpt-4o", temperature = 1.1, top_p = 1 },
-            system_prompt = prompt
-          },
+          -- chat
           {
             provider = "openai",
-            name = "ChatGPT4-1",
+            name = "chat/gpt-4.1",
             chat = true,
             command = false,
             model = { model = "gpt-4.1", temperature = 1.1, top_p = 1 },
             system_prompt = prompt
           },
-          -- {
-          --   provider = "openai",
-          --   name = "ChatGPT4-1-mini",
-          --   chat = true,
-          --   command = false,
-          --   model = { model = "gpt-4.1-mini", temperature = 1.1, top_p = 1 },
-          --   system_prompt = prompt
-          -- },
-          -- {
-          --   provider = "openai",
-          --   name = "ChatGPT4-1-nano",
-          --   chat = true,
-          --   command = false,
-          --   model = { model = "gpt-4.1-nano", temperature = 1.1, top_p = 1 },
-          --   system_prompt = prompt
-          -- },
-          -- {
-          --   provider = "openai",
-          --   name = "ChatGPT-o3-mini",
-          --   chat = true,
-          --   command = false,
-          --   model = { model = "o3-mini", temperature = 1.1, top_p = 1 },
-          --   system_prompt = prompt
-          -- },
           {
             provider = "openai",
-            name = "Code/GPT4-1",
+            name = "chat/gpt-5.1",
+            chat = true,
+            command = false,
+            model = {
+              model = "gpt-5.1",
+              temperature = nil,
+              top_p = nil,
+              reasoning = { effort = "low" },
+              text = { verbosity = "low" }
+            },
+            system_prompt = prompt
+          },
+          -- code
+          {
+            provider = "openai",
+            name = "code/gpt-5.1",
+            chat = false,
+            command = true,
+            model = { model = "gpt-5.1", temperature = nil, top_p = nil },
+            system_prompt = code_prompt
+          },
+          {
+            provider = "openai",
+            name = "code/gpt-4.1",
             chat = false,
             command = true,
             model = { model = "gpt-4.1", temperature = 0.8, top_p = 1 },
