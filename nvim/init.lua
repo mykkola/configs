@@ -722,6 +722,13 @@ vim.o.wrap = true
 vim.opt.listchars = { eol = '↵', space = '·', tab = '|·', trail = '~', extends = '>', precedes = '<' }
 vim.o.list = false
 vim.keymap.set({ 'n', 'i', 'v' }, '<leader>l', '<esc>:set list!<cr>')
+vim.keymap.set({ 'n' }, '<leader>k', function()
+    if vim.wo.conceallevel == 0 then
+    vim.wo.conceallevel = 2
+  else
+    vim.wo.conceallevel = 0
+  end
+end, {desc = 'Toggle conceallevel between 0 & 2'})
 -- F1
 vim.wo.number = true
 vim.o.relativenumber = true
