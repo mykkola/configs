@@ -790,6 +790,7 @@ vim.keymap.set({ 'n' }, '<leader>k', function()
   else
     vim.wo.conceallevel = 0
   end
+  require('render-markdown').toggle()
 end, { desc = 'Toggle conceallevel between 0 & 2' })
 -- F1
 vim.wo.number = true
