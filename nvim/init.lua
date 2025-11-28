@@ -803,7 +803,6 @@ vim.cmd('autocmd FileType plantuml vmap <F9> <esc>:w<CR>:!plantuml -tpng -output
 vim.cmd('autocmd FileType plantuml imap <F9> <esc>:w<CR>:!plantuml -tpng -output %:p:h %<cr>')
 
 vim.api.nvim_create_augroup('terraform_ft', {})
-
 vim.api.nvim_create_autocmd({ 'BufRead', 'BufNewFile' }, {
   group = 'terraform_ft',
   pattern = { '*.tf', '*.tfvars' },
@@ -820,7 +819,17 @@ if vim.g.neovide then
 end
 
 vim.opt.spelllang = 'en_us'
-vim.keymap.set({ 'n', 'v', 'i' }, '<F7>', '<esc>:set invspell<cr>')
+vim.keymap.set({ 'n', 'v', 'i' }, '<F7>', function()
+  -- toggle spell
+  vim.opt.spell = not vim.opt.spell:get()
+  -- echo status
+  if vim.opt.spell:get() then
+    vim.api.nvim_echo({ { "Spell: ON", "ModeMsg" } }, false, {})
+  else
+    vim.api.nvim_echo({ { "Spell: OFF", "WarningMsg" } }, false, {})
+  end
+end, { desc = 'Toggle spell with status message' })
+
 
 vim.g.easy_align_ignore_groups = {}
 
