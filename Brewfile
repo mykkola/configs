@@ -63,6 +63,8 @@ cask "ghostty"
 cask "macpass"
 # Neovim Client
 cask "neovide-app"
+# Colour picker for colours onscreen
+cask "pika"
 # Move and resize windows using keyboard shortcuts or snap areas
 cask "rectangle"
 # System monitor for the menu bar
