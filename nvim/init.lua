@@ -375,6 +375,7 @@ require('lazy').setup({
     },
     ft = "hurl",
     opts = {
+      auto_close = false,
       -- Show debugging info
       debug = false,
       -- Show notification on run
