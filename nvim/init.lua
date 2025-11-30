@@ -331,14 +331,6 @@ require('lazy').setup({
           -- chat
           {
             provider = "openai",
-            name = "chat/gpt-4.1",
-            chat = true,
-            command = false,
-            model = { model = "gpt-4.1", temperature = 1.1, top_p = 1 },
-            system_prompt = prompt
-          },
-          {
-            provider = "openai",
             name = "chat/gpt-5.1",
             chat = true,
             command = false,
@@ -358,14 +350,6 @@ require('lazy').setup({
             chat = false,
             command = true,
             model = { model = "gpt-5.1", temperature = nil, top_p = nil },
-            system_prompt = code_prompt
-          },
-          {
-            provider = "openai",
-            name = "code/gpt-4.1",
-            chat = false,
-            command = true,
-            model = { model = "gpt-4.1", temperature = 0.8, top_p = 1 },
             system_prompt = code_prompt
           },
         }
