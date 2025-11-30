@@ -391,6 +391,7 @@ require('lazy').setup({
         'MeanderingProgrammer/render-markdown.nvim',
         opts = {
           file_types = { "markdown" },
+          code = { border = 'none', conceal_delimiters = false },
         },
         ft = { "markdown" },
       },
