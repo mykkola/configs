@@ -324,16 +324,9 @@ require('lazy').setup({
           .. "- Ask questions, if there really are any, that can improve the response.\n"
       local code_prompt = require("gp.defaults").code_system_prompt
       require("gp").setup({
-        -- openai_api_key = { "pass", "show", "openai-first" },
         -- security add-generic-password -a mykola -s openai-first -w $(pass show openai-first)
         openai_api_key = { "security", "find-generic-password", "-s", "openai-first", "-w" },
         chat_template = require("gp.defaults").short_chat_template,
-        -- providers = {
-        --   openai = {
-        --     disable = false,
-        --     endpoint = "https://severe-rosalind-mykkola-e76bdc07.koyeb.app/v1/chat/completions",
-        --   },
-        -- },
         agents = {
           -- chat
           {
