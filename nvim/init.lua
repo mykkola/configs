@@ -53,6 +53,8 @@ require('lazy').setup({
     config = function(_, opts)
       require('tokyonight').setup(opts)
       vim.cmd.colorscheme 'tokyonight'
+      vim.api.nvim_set_hl(0, "Visual",  { bg = "#704608" })
+      vim.api.nvim_set_hl(0, "Comment",  { fg = "#646f9f", italic = true })
     end,
   },
   {
