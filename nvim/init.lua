@@ -53,8 +53,8 @@ require('lazy').setup({
     config = function(_, opts)
       require('tokyonight').setup(opts)
       vim.cmd.colorscheme 'tokyonight'
-      vim.api.nvim_set_hl(0, "Visual",  { bg = "#704608" })
-      vim.api.nvim_set_hl(0, "Comment",  { fg = "#646f9f", italic = true })
+      vim.api.nvim_set_hl(0, "Visual", { bg = "#704608" })
+      vim.api.nvim_set_hl(0, "Comment", { fg = "#646f9f", italic = true })
     end,
   },
   {
@@ -408,7 +408,7 @@ require('lazy').setup({
       formatters = {
         json = { 'jq' }, -- Make sure you have install jq in your system, e.g: brew install jq
         html = {
-          'prettier',  -- Make sure you have install prettier in your system, e.g: npm install -g prettier
+          'prettier',    -- Make sure you have install prettier in your system, e.g: npm install -g prettier
           '--parser',
           'html',
         },
@@ -422,7 +422,7 @@ require('lazy').setup({
       },
       -- Default mappings for the response popup or split views
       mappings = {
-        close = 'q',        -- Close the response popup or split view
+        close = 'q',          -- Close the response popup or split view
         next_panel = '<C-n>', -- Move to the next response popup window
         prev_panel = '<C-p>', -- Move to the previous response popup window
       },
@@ -430,7 +430,7 @@ require('lazy').setup({
     keys = {
       -- Run API request
       -- { "<leader>A",  "<cmd>HurlRunner<CR>",        desc = "Run All requests" },
-      { "<leader>a",  "<cmd>HurlRunnerAt<CR>",      desc = "Run Api request" },
+      { "<leader>a", "<cmd>HurlRunnerAt<CR>", desc = "Run Api request" },
       -- { "<leader>te", "<cmd>HurlRunnerToEntry<CR>", desc = "Run Api request to entry" },
       -- { "<leader>tE", "<cmd>HurlRunnerToEnd<CR>",   desc = "Run Api request from current entry to end" },
       -- { "<leader>tm", "<cmd>HurlToggleMode<CR>",    desc = "Hurl Toggle Mode" },
