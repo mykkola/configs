@@ -379,6 +379,7 @@ require('lazy').setup({
     end,
   },
   { 'echasnovski/mini.nvim', version = false },
+  { 'benfowler/telescope-luasnip.nvim' },
   {
     "jellydn/hurl.nvim",
     dependencies = {
@@ -734,9 +735,10 @@ local luasnip = require 'luasnip'
 require('luasnip.loaders.from_vscode').lazy_load()
 luasnip.config.setup {}
 
-luasnip.add_snippets("all", {
-  luasnip.s("today", luasnip.f(function() return os.date("%Y-%m-%d") end, {})),
-})
+-- there is already "date" snippet, leaving commented for example
+-- luasnip.add_snippets("all", {
+--   luasnip.s("today", luasnip.f(function() return os.date("%Y-%m-%d") end, {})),
+-- })
 
 cmp.setup {
   snippet = {
