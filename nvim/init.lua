@@ -734,6 +734,10 @@ local luasnip = require 'luasnip'
 require('luasnip.loaders.from_vscode').lazy_load()
 luasnip.config.setup {}
 
+luasnip.add_snippets("all", {
+  luasnip.s("today", luasnip.f(function() return os.date("%Y-%m-%d") end, {})),
+})
+
 cmp.setup {
   snippet = {
     expand = function(args)
