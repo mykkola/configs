@@ -374,6 +374,31 @@ require('lazy').setup({
             model = { model = "gpt-5.2", temperature = nil, top_p = nil },
             system_prompt = code_prompt
           },
+          -- special
+          {
+            provider = "openai",
+            name = "proofreader",
+            chat = false,
+            command = true,
+            model = {
+              model = "gpt-4.1-nano",
+              temperature = 1.1,
+              top_p = 1,
+            },
+            system_prompt = "You are a meticulous proofreader. Return only corrected text.",
+          },
+        },
+        hooks = {
+          Proofread = function(gp, params)
+            local template = table.concat({
+              "Proofread the following text. Fix grammar/spelling/punctuation, keep meaning.",
+              "Return ONLY the corrected text.",
+              "",
+              "{{selection}}",
+            }, "\n")
+            local agent = gp.get_command_agent("proofreader")
+            gp.Prompt(params, gp.Target.rewrite, agent, template)
+          end,
         }
       })
     end,
@@ -928,6 +953,7 @@ require("which-key").add({
     { "<C-g>r",     ":<C-u>'<,'>GpRewrite<cr>",          desc = "Visual Rewrite" },
     { "<C-g>s",     "<cmd>GpStop<cr>",                   desc = "GpStop" },
     { "<C-g>t",     ":<C-u>'<,'>GpChatToggle popup<cr>", desc = "Visual Toggle Chat" },
+    { "<C-g><F7>",  ":<C-u>'<,'>GpProofread<cr>",        desc = "Proofread Selection" },
   },
   {
     mode = { "n" },
