@@ -343,6 +343,20 @@ require('lazy').setup({
             },
             system_prompt = prompt
           },
+          {
+            provider = "openai",
+            name = "chat/gpt-5.2",
+            chat = true,
+            command = false,
+            model = {
+              model = "gpt-5.2",
+              temperature = nil,
+              top_p = nil,
+              reasoning = { effort = "low" },
+              text = { verbosity = "low" }
+            },
+            system_prompt = prompt
+          },
           -- code
           {
             provider = "openai",
@@ -350,6 +364,14 @@ require('lazy').setup({
             chat = false,
             command = true,
             model = { model = "gpt-5.1", temperature = nil, top_p = nil },
+            system_prompt = code_prompt
+          },
+          {
+            provider = "openai",
+            name = "code/gpt-5.2",
+            chat = false,
+            command = true,
+            model = { model = "gpt-5.2", temperature = nil, top_p = nil },
             system_prompt = code_prompt
           },
         }
