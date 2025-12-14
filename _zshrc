@@ -118,6 +118,7 @@ alias rm='rm -i'
 alias cp='cp -i'
 alias mv='mv -i'
 alias grep='grep --color=auto'
+alias view='nvim -R'
 alias nview='nvim -R'
 alias nvimdiff='nvim -d'
 
@@ -129,6 +130,7 @@ alias touch2list='while read fn; do let cnt+=1; [ $cnt -lt 10 ] && out=0"$cnt" |
 alias man='PAGER=most man'
 export LESS="-iMx4 -FXR"
 export PAGER='less'
+export EDITOR=nvim
 
 
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
