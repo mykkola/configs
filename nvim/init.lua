@@ -403,8 +403,30 @@ require('lazy').setup({
       })
     end,
   },
-  { 'echasnovski/mini.nvim', version = false },
+  { 'echasnovski/mini.nvim',           version = false },
   { 'benfowler/telescope-luasnip.nvim' },
+  {
+    "NickvanDyke/opencode.nvim",
+    dependencies = {
+      -- Recommended for `ask()` and `select()`.
+      -- Required for `snacks` provider.
+      ---@module 'snacks' <- Loads `snacks.nvim` types for configuration intellisense.
+      { "folke/snacks.nvim", opts = { input = {}, picker = {}, terminal = {} } },
+    },
+    config = function()
+      -- Required for `opts.events.reload`.
+      vim.o.autoread = true
+
+      local opencode = require("opencode")
+      local wk = require("which-key")
+
+      wk.add({
+        { "<C-h>", function() opencode.ask("@this: ", { submit = true }) end, desc = "Ask opencode" },
+        { "<C-x>", function() opencode.select() end, desc = "Execute opencode action…" },
+        { "<C-j>", function() opencode.prompt("@this") end, desc = "Add to opencode" },
+      }, { mode = { "n", "x" } })
+    end,
+  },
   {
     "jellydn/hurl.nvim",
     dependencies = {
