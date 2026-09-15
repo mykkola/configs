@@ -219,10 +219,15 @@ require('lazy').setup({
   {
     -- Highlight, edit, and navigate code
     'nvim-treesitter/nvim-treesitter',
+    branch = "main",
     dependencies = {
       'nvim-treesitter/nvim-treesitter-textobjects',
     },
     build = ':TSUpdate',
+  },
+  {
+    'nvim-treesitter/nvim-treesitter-textobjects',
+    branch = "main",
   },
 
   {
@@ -331,11 +336,11 @@ require('lazy').setup({
           -- chat
           {
             provider = "openai",
-            name = "chat/gpt-5.1",
+            name = "chat/gpt-5.6-sol",
             chat = true,
             command = false,
             model = {
-              model = "gpt-5.1",
+              model = "gpt-5.6-sol",
               temperature = nil,
               top_p = nil,
               reasoning = { effort = "low" },
@@ -345,11 +350,11 @@ require('lazy').setup({
           },
           {
             provider = "openai",
-            name = "chat/gpt-5.2",
+            name = "chat/gpt-5.6-terra",
             chat = true,
             command = false,
             model = {
-              model = "gpt-5.2",
+              model = "gpt-5.6-terra",
               temperature = nil,
               top_p = nil,
               reasoning = { effort = "low" },
@@ -360,18 +365,18 @@ require('lazy').setup({
           -- code
           {
             provider = "openai",
-            name = "code/gpt-5.1",
+            name = "code/gpt-5.6-terra",
             chat = false,
             command = true,
-            model = { model = "gpt-5.1", temperature = nil, top_p = nil },
+            model = { model = "gpt-5.3-codex", temperature = nil, top_p = nil },
             system_prompt = code_prompt
           },
           {
             provider = "openai",
-            name = "code/gpt-5.2",
+            name = "code/gpt-5.4",
             chat = false,
             command = true,
-            model = { model = "gpt-5.2", temperature = nil, top_p = nil },
+            model = { model = "gpt-5.4", temperature = nil, top_p = nil },
             system_prompt = code_prompt
           },
           -- special
@@ -381,7 +386,7 @@ require('lazy').setup({
             chat = false,
             command = true,
             model = {
-              model = "gpt-4.1-nano",
+              model = "gpt-5.6-luna",
               temperature = 1.1,
               top_p = 1,
             },
@@ -576,73 +581,37 @@ vim.keymap.set('n', '<leader>sr', require('telescope.builtin').resume, { desc = 
 -- [[ Configure Treesitter ]]
 -- See `:help nvim-treesitter`
 -- Defer Treesitter setup after first render to improve startup time of 'nvim {filename}'
-vim.defer_fn(function()
-  require('nvim-treesitter.configs').setup {
-    modules = {},
-    ensure_installed = {
-      "bash",
-      "c",
-      "diff",
-      "html",
-      "javascript",
-      "jsdoc",
-      "json",
-      "jsonc",
-      "lua",
-      "luadoc",
-      "luap",
-      "markdown",
-      "markdown_inline",
-      "python",
-      "query",
-      "regex",
-      "toml",
-      "tsx",
-      "typescript",
-      "vim",
-      "vimdoc",
-      "yaml",
-      -- "latex",
-      "sql",
-      "terraform",
-      "go",
-      "gomod",
-      "graphql",
-      "hurl",
-    },
-    sync_install = false,
-    ignore_install = {},
-    auto_install = false,
-    highlight = { enable = true },
-    indent = { enable = true },
-    incremental_selection = {
-      enable = true,
-      keymaps = {
-        init_selection = '<c-space>',
-        node_incremental = '<c-space>',
-        scope_incremental = '<c-s>',
-        node_decremental = '<M-space>',
-      },
-    },
-    textobjects = {
-      select = {
-        enable = true,
-        lookahead = true, -- Automatically jump forward to textobj, similar to targets.vim
-        keymaps = {
-          -- You can use the capture groups defined in textobjects.scm
-          ['aa'] = '@parameter.outer',
-          ['ia'] = '@parameter.inner',
-          ['af'] = '@function.outer',
-          ['if'] = '@function.inner',
-          ['ac'] = '@class.outer',
-          ['ic'] = '@class.inner',
-        },
-      },
-      move = { enable = false },
-      swap = { enable = false },
-    },
-  }
-end, 0)
+require('nvim-treesitter').install({
+  "bash",
+  "c",
+  "diff",
+  "html",
+  "javascript",
+  "jsdoc",
+  "json",
+  "jsonc",
+  "lua",
+  "luadoc",
+  "luap",
+  "markdown",
+  "markdown_inline",
+  "python",
+  "query",
+  "regex",
+  "toml",
+  "tsx",
+  "typescript",
+  "vim",
+  "vimdoc",
+  "yaml",
+  -- "latex",
+  "sql",
+  "terraform",
+  "go",
+  "gomod",
+  "graphql",
+  "hurl",
+})
 
 -- Diagnostic keymaps
 vim.keymap.set('n', '[d', vim.diagnostic.goto_prev, { desc = 'Go to previous diagnostic message' })
