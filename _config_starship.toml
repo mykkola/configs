@@ -2,7 +2,7 @@
 
 format = """
 $directory\
-[](fg:color_blue bg:color_green)\
+[](fg:color_blue bg:color_purple)\
 $git_branch\
 $git_status\
 $character"""
@@ -11,9 +11,8 @@ palette = 'powerline_fade'
 
 [palettes.powerline_fade]
 color_fg0 = '#EEEEEE'
-color_black = '#161616'
 color_blue = '#3465C5'
-color_green = '#4EAF50'
+color_purple = '#7952B3'
 # Fade toward charcoal; the final chevron uses the terminal's default background.
 color_fade1 = '#366837'
 color_fade2 = '#2A432B'
@@ -28,21 +27,21 @@ truncation_symbol = "…/"
 
 [git_branch]
 symbol = ""
-style = "fg:color_black bg:color_green"
+style = "fg:color_fg0 bg:color_purple"
 format = '[ $symbol $branch ]($style)'
 
 [git_status]
-style = "fg:color_black bg:color_green"
+style = "fg:color_fg0 bg:color_purple"
 format = '[($all_status$ahead_behind )]($style)'
 
 [character]
 disabled = false
 # Symbols include the fade so it follows the previous command's exit status.
 success_symbol = """
-[](fg:color_green bg:color_fade1)\
+[](fg:color_purple bg:color_fade1)\
 [](fg:color_fade1 bg:color_fade2)\
 [](fg:color_fade2)"""
 error_symbol = """
-[](fg:color_green bg:color_red)\
+[](fg:color_purple bg:color_red)\
 [](fg:color_red bg:color_error_fade1)\
 [](fg:color_error_fade1)"""
